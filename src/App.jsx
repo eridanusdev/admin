@@ -19,7 +19,11 @@ export default function App() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "font-imprima",
+        }}
+      />
       {token === "" ? (
         <Login setToken={setToken} />
       ) : (
@@ -30,9 +34,9 @@ export default function App() {
             <Sidebar />
             <div className="w-[70%] mx-auto ml-[max(5vw,25px) my-8 text-gray-600 text-base">
               <Routes>
-                <Route path="/add" component={<Add />} />
-                <Route path="/list" component={<List />} />
-                <Route path="/orders" component={<Orders />} />
+                <Route path="/add" component={<Add token={token} />} />
+                <Route path="/list" component={<List token={token} />} />
+                <Route path="/orders" component={<Orders token={token} />} />
               </Routes>
             </div>
           </div>
