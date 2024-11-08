@@ -21,9 +21,50 @@ export default function App() {
     <div className="bg-gray-50 min-h-screen">
       <Toaster
         toastOptions={{
-          className: "font-imprima",
+          className:
+            "font-imprima bg-gray-100 shadow-md rounded-md border border-gray-300", // General toast styling
+          loading: {
+            style: {
+              background: "#3B82F6", // A soft blue for loading toasts
+              color: "#ffffff",
+              borderRadius: "8px",
+              padding: "12px",
+              border: "1px solid #3B82F6",
+            },
+            iconTheme: {
+              primary: "#ffffff",
+              secondary: "#3B82F6",
+            },
+          },
+          success: {
+            style: {
+              background: "#10B981", // A green for success toasts
+              color: "#ffffff",
+              borderRadius: "8px",
+              padding: "12px",
+              border: "1px solid #10B981",
+            },
+            iconTheme: {
+              primary: "#ffffff",
+              secondary: "#10B981",
+            },
+          },
+          error: {
+            style: {
+              background: "#EF4444", // A red for error toasts
+              color: "#ffffff",
+              borderRadius: "8px",
+              padding: "12px",
+              border: "1px solid #EF4444",
+            },
+            iconTheme: {
+              primary: "#ffffff",
+              secondary: "#EF4444",
+            },
+          },
         }}
       />
+
       {token === "" ? (
         <Login setToken={setToken} />
       ) : (
@@ -34,9 +75,9 @@ export default function App() {
             <Sidebar />
             <div className="w-[70%] mx-auto ml-[max(5vw,25px) my-8 text-gray-600 text-base">
               <Routes>
-                <Route path="/add" component={<Add token={token} />} />
-                <Route path="/list" component={<List token={token} />} />
-                <Route path="/orders" component={<Orders token={token} />} />
+                <Route path="/add" element={<Add token={token} />} />
+                <Route path="/list" element={<List token={token} />} />
+                <Route path="/orders" element={<Orders token={token} />} />
               </Routes>
             </div>
           </div>
