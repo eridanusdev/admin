@@ -10,7 +10,7 @@ export default function List({ token }) {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
       if (response.data.success) {
-        setList(response.data.product);
+        setList(response.data.products);
       } else {
         toast.error(response.data.message);
       }
