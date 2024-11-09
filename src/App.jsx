@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import { Toaster } from "react-hot-toast";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const currency = "Ksh.";
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));

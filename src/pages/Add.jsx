@@ -34,6 +34,8 @@ export default function Add({ token }) {
       if (image3) formData.append("image3", image3);
       if (image4) formData.append("image4", image4);
 
+      console.log(image1);
+
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
@@ -44,7 +46,15 @@ export default function Add({ token }) {
         throw new Error(response.data.message || "Failed to add product");
       }
 
-      return response.data.message; // Return success message
+      setName("");
+      setDescription("");
+      setImage1(false);
+      setImage2(false);
+      setImage3(false);
+      setImage4(false);
+      setPrice("");
+
+      return response.data.message;
     } catch (error) {
       console.error(error);
       throw new Error(
