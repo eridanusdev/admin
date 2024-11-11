@@ -2,10 +2,13 @@ import axios from "axios";
 import React from "react";
 import { backendUrl } from "../App";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ setToken }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -20,6 +23,7 @@ export default function Login({ setToken }) {
         toast.success(response.data.message, {
           id: "success",
         });
+        navigate("/add");
       } else {
         toast.error(response.data.message, {
           id: "error",
