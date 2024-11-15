@@ -33,6 +33,27 @@ export default function Orders({ token }) {
     }
   };
 
+  const statusHandler = async (e, orderId) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/order/status",
+        {
+          orderId,
+          status: e.target.value,
+        },
+        { headers: { token } }
+      );
+
+      if (response.data.success) {
+        await fetchAllOrders();
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(response.data.message);
+    }
+  };
+
   useEffect(() => {
     fetchAllOrders();
   }, [token]);
@@ -95,9 +116,13 @@ export default function Orders({ token }) {
             <p className="font-yantramanav text-smsm:text-[15px]">
               {currency} {order.amount}
             </p>
-            <select className="p-2 font-semibold" value={order.status}>
+            <select
+              onChange={(event) => statusHandler(event, order._id)}
+              className="p-2 font-semibold"
+              value={order.status}
+            >
               <option value="Order Placed" className="font-imprima">
-                Order
+                Order Placed
               </option>
               <option value="Packing" className="font-imprima">
                 Packing
